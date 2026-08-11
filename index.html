@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Happy Birthday My Love ❤️</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Screen Loading Screen -->
+  <div id="loader" class="loader-screen">
+    <div class="loader-content">
+      <div class="heart-pulse-loader"></div>
+      <p class="loader-text">Preparing something special...</p>
+    </div>
+  </div>
+
+  <!-- Background Ambient Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Dynamic Explosions FX Canvas -->
+  <canvas id="fx-canvas"></canvas>
+
+  <!-- Global Audio Player & Floating Controls -->
+  <header class="top-nav">
+    <div class="nav-brand">❤️ <span id="nav-gf-name">My Princess</span></div>
+    
+    <div class="nav-controls">
+      <button id="music-btn" class="icon-btn" aria-label="Toggle Background Music">
+        <span class="music-icon">🎵</span>
+      </button>
+      <div class="volume-popover">
+        <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.7" aria-label="Volume Slider" />
+      </div>
+      <div class="page-indicator">
+        <span id="current-page-num">1</span> / <span id="total-pages-num">10</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Background Music Audio Tag -->
+  <audio id="bg-music" loop preload="auto"></audio>
+
+  <!-- Main Multi-Page Container -->
+  <main id="app-container">
+
+    <!-- PAGE 1: Welcome Screen -->
+    <section class="page-section active" id="page-1" data-title="Welcome">
+      <div class="glass-card hero-card">
+        <div class="avatar-wrapper">
+          <div class="avatar-glow"></div>
+          <span class="avatar-emoji">💖</span>
+        </div>
+        <h1 class="romantic-heading">Hey Beautiful...</h1>
+        <div class="typewriter-box">
+          <p id="typewriter-text" class="typewriter-content"></p>
+        </div>
+        <button class="primary-btn glow-btn" id="start-btn">
+          <span>Open My Heart ❤️</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- PAGE 2: Birthday Celebration -->
+    <section class="page-section" id="page-2" data-title="Celebration">
+      <div class="glass-card celebration-card">
+        <div class="bday-badge">Special Day</div>
+        <h1 class="bday-title bounce-anim">🎉 Happy Birthday <br/><span class="highlight-name" id="bday-gf-name">My Love</span> 🎉</h1>
+        <p class="bday-subtitle">You make every single day brighter and beautiful.</p>
+
+        <div class="celebration-actions">
+          <button class="secondary-btn" id="retrigger-confetti-btn">
+            <span>More Magic ✨</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 3: Love Letter -->
+    <section class="page-section" id="page-3" data-title="Love Letter">
+      <div class="envelope-wrapper">
+        <div class="envelope" id="interactive-envelope">
+          <div class="envelope-flap"></div>
+          <div class="envelope-pocket"></div>
+          <div class="envelope-seal">❤️</div>
+          <div class="letter-preview">Tap to Open Letter</div>
+        </div>
+      </div>
+
+      <!-- Letter Modal Overlay -->
+      <div class="letter-modal" id="letter-modal">
+        <div class="glass-card letter-card">
+          <button class="close-letter-btn" id="close-letter-btn">&times;</button>
+          <div class="letter-content">
+            <div class="letter-header"> <span id="letter-gf-name"></span>,</div>
+            <div id="letter-body" class="handwritten-text"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 4: Our Memories -->
+    <section class="page-section" id="page-4" data-title="Memories">
+      <h2 class="section-title">Our Precious Moments</h2>
+      <p class="section-subtitle">Swipe or scroll to walk down memory lane</p>
+      
+      <div class="memory-timeline" id="memory-timeline">
+        <!-- Memory cards rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- PAGE 5: Why I Love You -->
+    <section class="page-section" id="page-5" data-title="Why I Love You">
+      <h2 class="section-title">30 Reasons Why I Love You</h2>
+      <p class="section-subtitle">Tap any card to flip and discover a secret</p>
+      
+      <div class="reasons-grid" id="reasons-grid">
+        <!-- 30 flip cards rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- PAGE 6: Love Counter -->
+    <section class="page-section" id="page-6" data-title="Love Counter">
+      <div class="glass-card counter-card">
+        <h2 class="section-title">In Love With You For</h2>
+        <div class="time-counter" id="time-counter">
+          <div class="time-block">
+            <span class="time-value" id="count-days">000</span>
+            <span class="time-label">Days</span>
+          </div>
+          <div class="time-block">
+            <span class="time-value" id="count-hours">00</span>
+            <span class="time-label">Hours</span>
+          </div>
+          <div class="time-block">
+            <span class="time-value" id="count-minutes">00</span>
+            <span class="time-label">Minutes</span>
+          </div>
+          <div class="time-block">
+            <span class="time-value" id="count-seconds">00</span>
+            <span class="time-label">Seconds</span>
+          </div>
+        </div>
+        <p class="counter-footer">...and forever to go ❤️</p>
+      </div>
+    </section>
+
+    <!-- PAGE 7: Birthday Cake -->
+    <section class="page-section" id="page-7" data-title="Make a Wish">
+      <div class="glass-card cake-card">
+        <h2 class="section-title">Make a Birthday Wish</h2>
+        <p class="section-subtitle">Tap the candle flames to blow them out!</p>
+        
+        <div class="cake-container">
+          <div class="cake">
+            <div class="plate"></div>
+            <div class="layer layer-bottom"></div>
+            <div class="layer layer-middle"></div>
+            <div class="layer layer-top"></div>
+            <div class="icing"></div>
+            
+            <!-- Candles Container -->
+            <div class="candles-wrapper">
+              <div class="candle" data-candle="1">
+                <div class="flame"></div>
+                <div class="smoke"></div>
+              </div>
+              <div class="candle" data-candle="2">
+                <div class="flame"></div>
+                <div class="smoke"></div>
+              </div>
+              <div class="candle" data-candle="3">
+                <div class="flame"></div>
+                <div class="smoke"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="wish-message" class="wish-message hidden">
+          <p>✨ May every single dream of yours come true ❤️ ✨</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 8: Surprise Gift -->
+    <section class="page-section" id="page-8" data-title="Surprise Gift">
+      <div class="glass-card gift-card">
+        <h2 class="section-title">A Special Gift For You</h2>
+        <p class="section-subtitle">Tap the ribbon to untie your birthday surprise</p>
+
+        <div class="gift-box-wrapper" id="gift-box">
+          <div class="gift-lid">
+            <div class="gift-bow"></div>
+          </div>
+          <div class="gift-box">
+            <div class="ribbon-v"></div>
+            <div class="ribbon-h"></div>
+          </div>
+        </div>
+
+        <div id="gift-message-box" class="gift-reveal-card hidden">
+          <div class="gift-reveal-content">
+            <span class="gift-sparkle">💖</span>
+            <p id="gift-message-text"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 9: Promise Page -->
+    <section class="page-section" id="page-9" data-title="My Promises">
+      <div class="aurora-bg"></div>
+      <h2 class="section-title">My Promises To You</h2>
+      <p class="section-subtitle">Sacred vows straight from my heart</p>
+
+      <div class="promises-container" id="promises-container">
+        <!-- Promises populated dynamically -->
+      </div>
+    </section>
+
+    <!-- PAGE 10: Final Page -->
+    <section class="page-section" id="page-10" data-title="Forever & Always">
+      <div class="night-sky-container">
+        <div class="moon"></div>
+      </div>
+
+      <div class="glass-card final-card">
+        <h1 class="final-title">I Love You Forever ❤️</h1>
+        <p class="final-subtitle">Happy Birthday, <span id="final-gf-name">My Princess</span>.</p>
+
+        <button class="primary-btn hug-btn glow-btn" id="hug-btn">
+          <span>Hug Me Virtually 🤗</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Lightbox Modal for Photo Gallery -->
+  <div id="lightbox" class="lightbox">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="Enlarged Memory Photo" />
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <!-- Global Page Navigation Bar -->
+  <footer class="bottom-nav">
+    <button id="prev-page-btn" class="nav-arrow-btn" aria-label="Previous Page">←</button>
+    <div class="nav-dots" id="nav-dots">
+      <!-- Navigation dots rendered dynamically -->
+    </div>
+    <button id="next-page-btn" class="nav-arrow-btn" aria-label="Next Page">→</button>
+  </footer>
+
+  <!-- Script File -->
+  <script src="script.js"></script>
+</body>
+</html>
